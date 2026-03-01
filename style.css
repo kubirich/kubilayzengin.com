@@ -23,6 +23,21 @@
   --radius: 12px;
   --radius-sm: 8px;
   --transition: 0.2s ease;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #F9FAFB;
+  --bg-alt: #f3f4f6;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --border-hover: #d1d5db;
+  --text: #030712;
+  --text-muted: #4b5563;
+  --text-dim: #6b7280;
+  --orange-glow: rgba(251, 81, 19, 0.1);
+  --blue-glow: rgba(54, 136, 251, 0.1);
+  color-scheme: light;
 }
 
 html {
@@ -321,7 +336,14 @@ a:hover {
   flex-direction: column;
 }
 
-.stat-number {
+.stat-value {
+  display: flex;
+  align-items: baseline;
+}
+
+.stat-prefix,
+.stat-number,
+.stat-suffix {
   font-size: 1.5rem;
   font-weight: 700;
   font-family: 'JetBrains Mono', monospace;
@@ -994,28 +1016,110 @@ a.timeline-company:hover {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Stats layout for counters */
-.stat {
+
+/* ===== Page Loader ===== */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg);
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
-.stat > span:first-child,
-.stat-prefix,
-.stat-suffix {
-  font-size: 1.5rem;
-  font-weight: 700;
-  font-family: 'JetBrains Mono', monospace;
-  background: linear-gradient(135deg, var(--orange), var(--blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.page-loader.loaded {
+  opacity: 0;
+  visibility: hidden;
 }
 
-.stat-prefix,
-.stat-number,
-.stat-suffix {
-  display: inline;
+.loader-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border);
+  border-top-color: var(--orange);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== Theme Toggle ===== */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  margin-left: 16px;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--border-hover);
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  width: 18px;
+  height: 18px;
+}
+
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+[data-theme="light"] .theme-toggle .icon-sun { display: block; }
+[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+
+/* ===== Light Mode Overrides ===== */
+[data-theme="light"] .nav.scrolled {
+  background: rgba(249, 250, 251, 0.9);
+}
+
+[data-theme="light"] .nav-links {
+  background: rgba(249, 250, 251, 0.95);
+}
+
+[data-theme="light"] .hero-glow {
+  background: radial-gradient(circle, rgba(251, 81, 19, 0.08), transparent 70%);
+}
+
+[data-theme="light"] .hero-glow-2 {
+  background: radial-gradient(circle, rgba(54, 136, 251, 0.07), transparent 70%);
+}
+
+[data-theme="light"] .hero-avatar {
+  background: var(--bg);
+  border-color: var(--bg);
+}
+
+[data-theme="light"] .timeline-dot {
+  border-color: var(--bg-alt);
+}
+
+[data-theme="light"] .aio-logo-link .aio-logo {
+  content: url('assets/aio-logo-dark.svg');
+}
+
+[data-theme="light"] .project-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .detail-card::before,
+[data-theme="light"] .project-card::before {
+  background: radial-gradient(circle, rgba(251, 81, 19, 0.06), transparent 70%);
+}
+
+[data-theme="light"] .nav-toggle span {
+  background: var(--text);
 }
 
 /* ===== Responsive ===== */
@@ -1032,6 +1136,14 @@ a.timeline-company:hover {
     padding: 16px 24px;
     gap: 16px;
     border-bottom: 1px solid var(--border);
+  }
+
+  [data-theme="light"] .nav-links {
+    background: rgba(249, 250, 251, 0.95);
+  }
+
+  .theme-toggle {
+    margin-left: 8px;
   }
 
   .nav-links.active {
@@ -1137,9 +1249,7 @@ a.timeline-company:hover {
   }
 
   .stat {
-    flex-direction: row;
-    align-items: baseline;
-    gap: 8px;
+    align-items: center;
   }
 
   .hero-avatar-wrapper {

@@ -1,3 +1,23 @@
+// Page loader
+window.addEventListener('load', () => {
+  document.getElementById('page-loader').classList.add('loaded');
+});
+
+// Theme toggle
+const themeToggle = document.getElementById('theme-toggle');
+
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  if (next === 'dark') {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+  }
+});
+
 // Framer-style scroll animations
 const animElements = document.querySelectorAll('.anim');
 
@@ -95,18 +115,18 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-const toggle = document.getElementById('nav-toggle');
+const navToggle = document.getElementById('nav-toggle');
 const links = document.getElementById('nav-links');
 
-toggle.addEventListener('click', () => {
+navToggle.addEventListener('click', () => {
   links.classList.toggle('active');
-  toggle.classList.toggle('active');
+  navToggle.classList.toggle('active');
 });
 
 links.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     links.classList.remove('active');
-    toggle.classList.remove('active');
+    navToggle.classList.remove('active');
   });
 });
 
