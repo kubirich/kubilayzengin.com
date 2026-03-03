@@ -244,11 +244,7 @@ a:hover {
 }
 .hero-name {
   white-space: nowrap;
-}
-@media (max-width: 480px) {
-  .hero-name {
-    display: block;
-  }
+  display: block;
 }
 
 .hero-subtitle {
