@@ -242,6 +242,9 @@ a:hover {
   line-height: 1.1;
   margin-bottom: 20px;
 }
+.hero-name {
+  white-space: nowrap;
+}
 
 .hero-subtitle {
   font-size: clamp(1.05rem, 2.2vw, 1.25rem);

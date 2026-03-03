@@ -124,7 +124,7 @@ const translations = {
     'nav-contact': 'İletişim',
     // Hero
     'hero-badge': 'AI Operasyonları Lideri @ <a href="https://aioperator.com" target="_blank" rel="noopener"><strong>AI Operator</strong></a>',
-    'hero-title': 'Merhaba, ben <span class="text-orange">Kubilay</span> Zengin',
+    'hero-title': 'Merhaba, ben <span class="hero-name"><span class="text-orange">Kubilay</span> Zengin</span>',
     'hero-subtitle': 'Ekiplerin daha verimli çalışmasını sağlayan <span class="text-blue">AI otomasyonları</span> ve <span class="text-orange">AI ajanları</span> geliştiriyorum.',
     'hero-desc': 'Mekatronik mühendisinden AI operasyon uzmanına. Şu anda <a href="https://aioperator.com" target="_blank" rel="noopener"><strong>AI Operator</strong></a>\'da AI operasyonlarını yönetiyorum; otomasyonlar tasarlıyor, AI ajanları geliştiriyor ve ekipleri AI kullanımı konusunda eğitiyorum.',
     'hero-cta1': 'İletişime Geç',
